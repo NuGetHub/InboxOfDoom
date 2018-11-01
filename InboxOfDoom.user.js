@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         InboxOfDoom
-// @version      0.2
+// @version      0.3
 // @description  Ein komplettes Redesign der Inbox auf pr0gramm.com
 // @author       5yn74x
 // @match        https://pr0gramm.com/*
@@ -166,6 +166,7 @@ function getmsgsby(name){
             m.message = m.message.replace(/(?:\r\n|\r|\n)/g, '<br>');
             let replaceurl = /((?:http|https):\/\/[\w-]+\.[\w-]+[\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])/gm;
             let message = m.message.replace(replaceurl, '<a href="$1">$1</a>');
+            message = message.replace(/(^|\W+)\@([\w\-]+)/gm,'$1<a href="/user/$2">@$2</a>'); 
             if(m.sent) {
                 mark = m.recipientMark;
                 id = m.recipientId;
